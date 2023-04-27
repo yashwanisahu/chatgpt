@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:subscriptionevent="http://subscriptionevent.rws.pearson.com/doc/2009/06/01/"
+	xmlns:serv="http://common.rws.pearson.com/doc/2008/06/01/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://subscriptionevent.rws.pearson.com/doc/2009/06/01/"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	<import namespace="http://common.rws.pearson.com/doc/2008/06/01/"
+		schemaLocation="../common/Service.xsd" />
+	
+	<!-- IDAMR-823 -->
+	<simpleType name="AuthContextId">
+		<restriction base="long">
+			<whiteSpace value="collapse"/>
+		</restriction>
+	</simpleType>
+	<complexType name="AuthContextIdType">
+		<sequence>
+			<element name="AuthContextId" type="subscriptionevent:AuthContextId" minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<simpleType name="IDType">
+		<restriction base="string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="32" />
+		</restriction>
+	</simpleType>
+	<!--Valid values for LCRoleType : Student, Instructor -->
+	<simpleType name="LCRoleType">
+		<restriction base="xsd:string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="128" />
+		</restriction>
+	</simpleType>
+	<simpleType name="SubscriptionType">
+		<restriction base="xsd:string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="1024" />
+		</restriction>
+	</simpleType>
+	<simpleType name="ModelType">
+		<restriction base="xsd:string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="256" />
+		</restriction>
+	</simpleType>
+	<simpleType name="AccessLevel">
+		<restriction base="xsd:string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="1024" />
+		</restriction>
+	</simpleType>
+	<simpleType name="ReasonCode">
+		<restriction base="string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="128" />
+		</restriction>
+	</simpleType>
+	<simpleType name="ReasonDescription">
+		<restriction base="string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="1024" />
+		</restriction>
+	</simpleType>
+	<simpleType name="SourceSystem">
+		<restriction base="xsd:string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="1024" />
+		</restriction>
+	</simpleType>
+    <simpleType name="ResourceName">
+		<restriction base="string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="128" />
+		</restriction>
+	</simpleType>
+    <simpleType name="ProductName">
+		<restriction base="string">
+			<whiteSpace value="collapse" />
+			<minLength value="1" />
+			<maxLength value="128" />
+		</restriction>
+	</simpleType>
+	<complexType name="SubscribedResources">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="1" name="Resource"
+				type="subscriptionevent:SubscribedResource" />
+		</xsd:sequence>
+	</complexType>
+	<complexType name="SubscribedResource">
+		<sequence>
+			<element name="ResourceEntityId" type="subscriptionevent:IDType" />
+			<element name="StartDate" type="xsd:dateTime" />
+			<element name="EndDate" type="xsd:dateTime" />
+			<element name="AccessLevel" type="subscriptionevent:AccessLevel" />
+		</sequence>
+	</complexType>
+	<complexType name="SubscribeResources">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="1" name="Resource"
+				type="subscriptionevent:SubscribeResource" />
+		</xsd:sequence>
+	</complexType>
+	<complexType name="SubscribeResource">
+		<sequence>
+			<element name="ResourceEntityId" type="subscriptionevent:IDType" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType" />
+            <element name="EndDate" type="xsd:dateTime" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="SubscribeUserRequestType">
+		<sequence>
+			<element name="SubscriptionType" type="subscriptionevent:SubscriptionType" />
+			<element name="ProductId" type="subscriptionevent:IDType" />
+			<element name="LicensePoolId" type="subscriptionevent:IDType" />
+			<element name="StartDate" type="xsd:dateTime" />
+			<element name="EndDate" type="xsd:dateTime" />
+			<element name="ResourceId" type="subscriptionevent:IDType"
+				maxOccurs="unbounded" />
+			<element name="UserId" type="subscriptionevent:IDType" />
+			<element name="OrganizationId" type="subscriptionevent:IDType" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				nillable="true" minOccurs="0" />
+			<element name="SourceSystem" type="subscriptionevent:SourceSystem" />
+			<!-- IDAMR-823 -->
+			<element name="AuthContextIds" type="subscriptionevent:AuthContextIdType" 
+			maxOccurs="1" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="SubscribeUserB2CRequestType">
+		<sequence>
+			<element name="SubscriptionType" type="subscriptionevent:SubscriptionType" />
+			<element name="ModelType" type="subscriptionevent:ModelType" />
+			<element name="ProductEntityId" type="subscriptionevent:IDType" />
+			<element name="PaymentRecordId" type="subscriptionevent:IDType" />
+			<element name="Resources" type="subscriptionevent:SubscribedResources"
+				maxOccurs="1" />
+			<element name="UserId" type="subscriptionevent:IDType" />
+			<element name="OrganizationId" type="subscriptionevent:IDType"
+				minOccurs="0" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType"
+				minOccurs="0" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				nillable="true" minOccurs="0" />
+			<!-- IDAMR-823 -->
+			<element name="AuthContextIds" type="subscriptionevent:AuthContextIdType" 
+				maxOccurs="1" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="CreateResourceSubscriptionsByProductIdRequestType">
+		<sequence>
+			<element name="ProductEntityId" type="subscriptionevent:IDType" />
+			<element name="Resources" type="subscriptionevent:SubscribeResources"
+				maxOccurs="1" />
+			<element name="CreatedBy" type="subscriptionevent:IDType" />
+			<element name="SourceSystem" type="subscriptionevent:SourceSystem" />
+		</sequence>
+	</complexType>
+	<complexType name="GetSubscriptionByUSerIdRequestType">
+		<sequence>
+			<element name="UserId" type="subscriptionevent:IDType" />
+			<element minOccurs="0" name="EnableEntityIds" type="xsd:boolean" />
+			<element minOccurs="0" name="HasAccess" type="xsd:boolean" />
+		</sequence>
+	</complexType>
+	<complexType name="Subscription">
+		<sequence>
+			<element name="SubscriptionId" type="subscriptionevent:IDType" />
+			<element name="SubscriptionType" type="subscriptionevent:SubscriptionType" />
+			<element name="ModelType" type="subscriptionevent:ModelType" />
+			<element name="PaymentRecordId" type="subscriptionevent:IDType" />
+			<element name="ReasonCode" type="subscriptionevent:ReasonCode" />
+			<element name="ReasonDescription" type="subscriptionevent:ReasonDescription" />
+			<element name="ProductId" type="subscriptionevent:IDType" />
+			<element name="HasAccess" type="xsd:boolean" />
+			<element name="ResourceId" type="subscriptionevent:IDType" />
+			<element name="StartDate" type="xsd:dateTime" />
+			<element name="EndDate" type="xsd:dateTime" />
+			<element name="AccessLevel" type="subscriptionevent:AccessLevel"
+				minOccurs="0" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType" minOccurs="0" />
+			<element name="CreatedBy" type="subscriptionevent:IDType" />
+			<element name="LastUpdatedBy" type="subscriptionevent:IDType" />
+			<element name="CreatedDate" type="xsd:dateTime" />
+			<element name="LastUpdatedDate" type="xsd:dateTime" />
+		</sequence>
+	</complexType>
+	<complexType name="UnSubscribeUserRequestType">
+		<sequence>
+			<element name="ProductId" type="subscriptionevent:IDType" />
+			<element name="UserId" type="subscriptionevent:IDType" />
+			<element name="OrganizationId" type="subscriptionevent:IDType" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType"
+				nillable="true" minOccurs="0" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				nillable="true" minOccurs="0" />
+			<element name="SourceSystem" type="subscriptionevent:SourceSystem" />
+		</sequence>
+	</complexType>
+	<complexType name="UnSubscribeUsersByLicensePoolId">
+		<sequence>
+			<element name="LicensePoolId" type="subscriptionevent:IDType" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="UnSubscribeUserByAffiliationRequestType">
+		<sequence>
+			<element name="UserId" type="subscriptionevent:IDType" />
+			<element name="OrganizationId" type="subscriptionevent:IDType" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				nillable="true" minOccurs="0" />
+			<element name="SourceSystem" type="subscriptionevent:SourceSystem"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="UnSubscribeUserByAffiliationResponseType">
+		<sequence>
+			<element name="SubscriptionUpdated" type="subscriptionevent:SubscriptionUpdatedType"
+				maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="SubscriptionUpdatedType">
+		<sequence>
+			<element name="SubscriptionUpdated" type="xsd:int" />
+		</sequence>
+		<xsd:attribute name="LicensePoolId" type="subscriptionevent:IDType"
+			use="required" />
+	</complexType>
+    <complexType name="UnSubscribeUserByRequestId">
+		<sequence>
+			<element name="RequestId" type="subscriptionevent:IDType" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				minOccurs="0" />
+		</sequence>
+	</complexType>
+    
+	<complexType name="SubscriptionRequestType">
+		<sequence>
+			<element name="SubscriptionRequestId" type="xsd:long"
+				maxOccurs="1" minOccurs="1" />
+			<element name="SubscriptionType" type="subscriptionevent:SubscriptionType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="ModelType" type="subscriptionevent:ModelType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="OrganizationId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="0" />
+			<element name="UserId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType"
+				maxOccurs="1" minOccurs="0" />
+			<element name="ProductEntityId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="PaymentEventId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="SourceSystem" type="subscriptionevent:SourceSystem"
+				maxOccurs="1" minOccurs="1" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="LastUpdatedBy" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="CreatedDate" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1" />
+			<element name="LastUpdatedDate" type="xsd:dateTime"
+				maxOccurs="1" minOccurs="1" />
+			<element name="Subscriptions" type="subscriptionevent:SubscriptionListType"
+				maxOccurs="1" minOccurs="1" />
+		</sequence>
+	</complexType>
+
+	<complexType name="SubscriptionListType">
+		<sequence>
+			<element name="Subscription" type="subscriptionevent:ResourceSubscriptionType"
+				maxOccurs="unbounded" minOccurs="1" />
+		</sequence>
+	</complexType>
+
+	<complexType name="ResourceSubscriptionType">
+		<sequence>
+			<element name="SubscriptionId" type="subscriptionevent:IDType" />
+			<element name="SubscriptionType" type="subscriptionevent:SubscriptionType" />
+			<element name="ProductEntityId" type="subscriptionevent:IDType" />
+			<element name="ResourceEntityId" type="subscriptionevent:IDType" />
+			<element name="StartDate" type="xsd:dateTime" />
+			<element name="EndDate" type="xsd:dateTime" />
+			<element name="HasAccess" type="xsd:boolean" />
+			<element name="AccessLevel" type="subscriptionevent:AccessLevel"
+				minOccurs="0" />
+			<element name="ReasonCode" type="subscriptionevent:ReasonCode" />
+			<element name="ReasonDescription" type="subscriptionevent:ReasonDescription" />
+			<element name="CreatedBy" type="subscriptionevent:IDType" />
+			<element name="LastUpdatedBy" type="subscriptionevent:IDType" />
+			<element name="CreatedDate" type="xsd:dateTime" />
+			<element name="LastUpdatedDate" type="xsd:dateTime" />
+		</sequence>
+	</complexType>
+	
+    <complexType name="SimpleProductListType">
+        <sequence>
+            <element name="Product" type="subscriptionevent:SimpleProduct" 
+                minOccurs="1" maxOccurs="unbounded" />
+        </sequence>
+    </complexType>
+    
+    <complexType name="SimpleProduct">
+        <sequence>
+            <element name="ProductName" type="subscriptionevent:ProductName" />
+            <element name="ProductId" type="subscriptionevent:IDType" />
+            <element name="PaymentEventId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="0" />
+            <element name="Resources" type="subscriptionevent:SubscribedProductListType"
+                minOccurs="0" maxOccurs="1" />
+        </sequence>
+    </complexType>
+
+    <complexType name="GetSubscribedProductsByUserIdType">
+		<sequence>
+			<element name="UserId" type="subscriptionevent:IDType" />
+		</sequence>
+	</complexType>
+    <complexType name="GetSubscribedProductsAndResourcesByUserIdType">
+		<sequence>
+			<element name="UserId" type="subscriptionevent:IDType" />
+		</sequence>
+	</complexType>
+    
+	<complexType name="SubscribedProduct">
+		<sequence>
+			<element name="SubscriptionRequestId" type="subscriptionevent:IDType"/>
+			<element name="ReasonCode" type="subscriptionevent:ReasonCode" />
+			<element name="ProductId" type="subscriptionevent:IDType" />
+            <element name="ResourceId" type="subscriptionevent:IDType" />
+            <element name="ResourceName" type="subscriptionevent:ResourceName" />
+			<element name="Type" type="subscriptionevent:IDType" />
+			<element name="StartDate" type="subscriptionevent:IDType" />
+			<element name="CreatedDate" type="subscriptionevent:IDType" />
+			<element name="EndDate" type="subscriptionevent:IDType" />
+			<element name="LastUpdatedDate" type="subscriptionevent:IDType" />
+			<element name="HasAccess" type="xsd:boolean" />
+            <element name="OrgId" type="subscriptionevent:IDType" />
+            <element name="UserId" type="subscriptionevent:IDType" />
+            <element name="LearningContext" type="subscriptionevent:IDType" />
+            <element name="AccessLevel" type="subscriptionevent:AccessLevel"
+				minOccurs="0" />
+            <element name="SubscriptionType" type="subscriptionevent:SubscriptionType" />
+		</sequence>
+	</complexType>
+	
+    <complexType name="SubscribedProductListType">
+        <sequence>
+            <element name="Subscription" type="subscriptionevent:SubscribedProduct"
+				maxOccurs="unbounded" minOccurs="1" />
+        </sequence>
+    </complexType>
+    
+    <complexType name="SubscribedProductsAndResources">
+		<sequence>
+			<element name="Products" type="subscriptionevent:SimpleProductListType"
+                maxOccurs="1" minOccurs="1" />
+		</sequence>
+	</complexType>
+    
+	<complexType name="GetSubscriptionsBySubscriptionRequestIdRequestType">
+		<sequence>
+			<element name="SubscriptionRequestId" type="xsd:long"
+				maxOccurs="1" minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="SubscriptionNotificationRequestType">
+		<sequence>
+			<element name="SubscriptionNotificationMessage" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+			<element name="RecipientEmailAddress" type="xsd:string" maxOccurs="unbounded" minOccurs="1" nillable="false"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="GetSubscriptionHistoryBySubscriptionRequestIdRequestType">
+		<sequence>
+			<element name="SubscriptionRequestId" type="xsd:long"
+				maxOccurs="1" minOccurs="1" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="SubscriptionHistoryRequestType">
+		<sequence>
+			<element name="SubscriptionRequestId" type="xsd:long"
+				maxOccurs="1" minOccurs="1" />
+			<element name="SubscriptionType" type="subscriptionevent:SubscriptionType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="ModelType" type="subscriptionevent:ModelType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="OrganizationId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="0" />
+			<element name="UserId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType"
+				maxOccurs="1" minOccurs="0" />
+			<element name="ProductEntityId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="PaymentEventId" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="SourceSystem" type="subscriptionevent:SourceSystem"
+				maxOccurs="1" minOccurs="1" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="LastUpdatedBy" type="subscriptionevent:IDType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="CreatedDate" type="xsd:dateTime" maxOccurs="1"
+				minOccurs="1" />
+			<element name="LastUpdatedDate" type="xsd:dateTime"
+				maxOccurs="1" minOccurs="1" />
+			<element name="Resources" type="subscriptionevent:SubscriptionHistoryListType"
+				maxOccurs="1" minOccurs="1" />
+			<element name="Events" type="subscriptionevent:SubscriptionHistoryEventListType"
+				maxOccurs="1" minOccurs="1" />	
+		</sequence>
+	</complexType>
+
+	<complexType name="SubscriptionHistoryListType">
+		<sequence>
+			<element name="Subscription" type="subscriptionevent:ResourceSubscriptionType"
+				maxOccurs="unbounded" minOccurs="1" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="SubscriptionHistoryEventListType">
+		<sequence>
+			<element name="SubscriptionEvent" type="subscriptionevent:SubscriptionEventType"
+				maxOccurs="unbounded" minOccurs="1" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="SubscriptionEventType">
+		<sequence>
+			<element name="EventId" type="subscriptionevent:IDType"/>
+			<element name="ReasonCode" type="subscriptionevent:IDType"/>
+			<element name="StartDate" type="subscriptionevent:IDType"/>
+			<element name="EndDate" type="subscriptionevent:IDType"/>
+			<element name="CreateDate" type="subscriptionevent:IDType"/>
+			<element name="Resources" type="subscriptionevent:ResourceSubscriptionType"
+				minOccurs="0"/>
+		</sequence>
+	</complexType>
+	
+	<element name="SubscribeUserRequestElement">
+		<complexType>
+			<sequence>
+				<element name="SubscribeUserRequestType" type="subscriptionevent:SubscribeUserRequestType"
+					nillable="true" />
+			</sequence>
+			<xsd:attribute name="eventReason" type="xsd:string" />
+		</complexType>
+	</element>
+	<element name="SubscribeUserResponseElement">
+		<complexType>
+			<sequence>
+				<element name="ServiceResponseType" type="serv:ServiceResponseType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="SubscribeUserB2CRequestElement">
+		<complexType>
+			<sequence>
+				<element name="SubscribeUserB2CRequestType"
+					type="subscriptionevent:SubscribeUserB2CRequestType" nillable="true" />
+			</sequence>
+			<xsd:attribute name="eventReason" type="xsd:string" />
+		</complexType>
+	</element>
+	<element name="SubscribeUserB2CResponseElement">
+		<complexType>
+			<sequence>
+				<element name="ServiceResponseType" type="serv:ServiceResponseType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="CreateResourceSubscriptionsByProductIdRequestElement">
+		<complexType>
+			<sequence>
+				<element name="CreateResourceSubscriptionsByProductIdRequestType"
+					type="subscriptionevent:CreateResourceSubscriptionsByProductIdRequestType" nillable="true" />
+			</sequence>
+			<xsd:attribute name="eventReason" type="xsd:string" />
+		</complexType>
+	</element>
+	<element name="CreateResourceSubscriptionsByProductIdResponseElement">
+		<complexType>
+			<sequence>
+				<element name="ServiceResponseType" type="serv:ServiceResponseType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="UnSubscribeUserRequestElement">
+		<complexType>
+			<sequence>
+				<element name="UnSubscribeUserRequestType" type="subscriptionevent:UnSubscribeUserRequestType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="UnSubscribeUserResponseElement">
+		<complexType>
+			<sequence>
+				<element name="ServiceResponseType" type="serv:ServiceResponseType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetSubscriptionByUserIdRequestElement">
+		<complexType>
+			<sequence>
+				<element name="GetSubscriptionByUSerIdRequestType"
+					type="subscriptionevent:GetSubscriptionByUSerIdRequestType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetSubscriptionByUserIdResponseElement">
+		<complexType>
+			<sequence>
+				<element maxOccurs="unbounded" minOccurs="0" name="Subscription"
+					type="subscriptionevent:Subscription" nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="GetSubscriptionByUserIdPagedResponseElement">
+		<complexType>
+			<sequence>
+				<element maxOccurs="1" minOccurs="0" name="page"
+					type="xsd:int"/>
+				<element maxOccurs="1" minOccurs="0" name="count"
+					type="xsd:int"/>
+				<element maxOccurs="1" minOccurs="0" name="limit"
+					type="xsd:int"/>
+				<element maxOccurs="unbounded" minOccurs="0" name="Subscription"
+					type="subscriptionevent:Subscription"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="UnSubscribeUserByLicensePoolIdRequestElement">
+		<complexType>
+			<sequence>
+				<element name="UnSubscribeUsersByLicensePoolId"
+					type="subscriptionevent:UnSubscribeUsersByLicensePoolId" />
+			</sequence>
+			<xsd:attribute name="eventReason" type="xsd:string"
+				use="required" />
+		</complexType>
+	</element>
+	<element name="UnSubscribeUserByLicensePoolIdResponseElement">
+		<complexType>
+			<sequence>
+				<element name="ServiceResponseType" type="serv:ServiceResponseType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="UnSubscribeUserByAffiliationRequestElement">
+		<complexType>
+			<sequence>
+				<element name="UnSubscribeUserByAffiliationRequestType"
+					type="subscriptionevent:UnSubscribeUserByAffiliationRequestType" />
+			</sequence>
+			<xsd:attribute name="eventReason" type="xsd:string"
+				use="required" />
+		</complexType>
+	</element>
+	<element name="UnSubscribeUserByAffiliationResponseElement">
+		<complexType>
+			<sequence>
+				<element name="UnSubscribeUserByAffiliationResponseType"
+					type="subscriptionevent:UnSubscribeUserByAffiliationResponseType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+    <element name="UnSubscribeUserByRequestIdRequestElement">
+		<complexType>
+			<sequence>
+                <xsd:element maxOccurs="unbounded" minOccurs="1" name="SubscriptionRequestId" type="subscriptionevent:UnSubscribeUserByRequestId"/>
+			</sequence>
+			<xsd:attribute name="eventReason" type="xsd:string"
+				use="required" />
+		</complexType>
+	</element>
+    <element name="UnSubscribeUserByRequestIdResponseElement">
+		<complexType>
+			<sequence>
+				<element name="ServiceResponseType" type="serv:ServiceResponseType"
+					nillable="true" />
+                <element maxOccurs="unbounded" minOccurs="1" name="FailedRequestId" type="subscriptionevent:UnSubscribeUserByRequestId"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetSubscriptionsBySubscriptionRequestIdRequest">
+		<complexType>
+			<sequence>
+				<element name="GetSubscriptionsBySubscriptionIdRequestType"
+					type="subscriptionevent:GetSubscriptionsBySubscriptionRequestIdRequestType" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetSubscriptionsBySubscriptionRequestIdResponse">
+		<complexType>
+			<sequence>
+				<element name="SubscriptionRequest" type="subscriptionevent:SubscriptionRequestType"
+					maxOccurs="1" minOccurs="0" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="PublishSubscriptionNotificationRequestElement">
+		<complexType>
+			<sequence>
+				<element name="PublishSubscriptionNotificationRequestType" type="subscriptionevent:SubscriptionNotificationRequestType" nillable="false"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="PublishSubscriptionNotificationResponseElement">
+		<complexType>
+			<sequence>
+				<element name="ServiceResponseType" type="serv:ServiceResponseType"	nillable="true"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="GetSubscribedProductsRequestElement">
+		<complexType>
+			<sequence>
+				<element name="GetSubscribedProductsByUserIdType"
+					type="subscriptionevent:GetSubscribedProductsByUserIdType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetSubscribedProductsResponseElement">
+		<complexType>
+			<sequence>
+				<element maxOccurs="unbounded" minOccurs="0" name="SubscribedProduct"
+					type="subscriptionevent:SubscribedProduct" nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+	
+    <element name="GetSubscribedProductsAndResourcesRequestElement">
+		<complexType>
+			<sequence>
+				<element name="GetSubscribedProductsAndResourcesByUserIdType"
+					type="subscriptionevent:GetSubscribedProductsAndResourcesByUserIdType"
+					nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+    <element name="GetSubscribedProductsAndResourcesResponseElement">
+		<complexType>
+			<sequence>
+				<element name="SubscribedProductsAndResources"
+					type="subscriptionevent:SubscribedProductsAndResources" nillable="true" />
+			</sequence>
+		</complexType>
+	</element>
+    
+	<element name="GetSubscriptionHistoryBySubscriptionRequestIdRequest">
+		<complexType>
+			<sequence>
+				<element name="GetSubscriptionHistoryBySubscriptionRequestIdRequestType"
+					type="subscriptionevent:GetSubscriptionHistoryBySubscriptionRequestIdRequestType" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetSubscriptionHistoryBySubscriptionRequestIdResponse">
+		<complexType>
+			<sequence>
+				<element name="SubscriptionRequest" type="subscriptionevent:SubscriptionHistoryRequestType"
+					maxOccurs="1" minOccurs="0" />
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="GetSubscriptionsRequestBySubscriptionRequestIdsRequest">
+		<complexType>
+			<sequence>
+				<element name="SubscriptionRequestIds" type="xsd:long"
+					maxOccurs="unbounded" minOccurs="1" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="GetSubscriptionsRequestBySubscriptionRequestIdsResponse">
+		<complexType>
+			<sequence>
+				<element name="SubscriptionInfo" type="subscriptionevent:SubscriptionRequestType"
+					maxOccurs="unbounded" minOccurs="0" />
+			</sequence>
+		</complexType>
+	</element>
+
+ 	<complexType name="SubscriptionException">
+		<sequence>
+			<element name="message" type="xsd:string" nillable="true" />
+		</sequence>
+	</complexType>
+	<element name="SubscriptionExceptionElement" type="subscriptionevent:SubscriptionException"
+		nillable="true" />
+		
+	<complexType name="SubscribeMultiUserRequestType">
+		<sequence>
+			<element name="SubscriptionType" type="subscriptionevent:SubscriptionType" />
+			<element name="ProductId" type="subscriptionevent:IDType" />
+			<element name="LicensePoolId" type="subscriptionevent:IDType" />
+			<element name="StartDate" type="xsd:dateTime" />
+			<element name="EndDate" type="xsd:dateTime" />
+			<element name="ResourceId" type="subscriptionevent:IDType"
+				maxOccurs="unbounded" />
+			<element name="UserId" type="subscriptionevent:IDType" minOccurs="1" maxOccurs="unbounded" />
+			<element name="OrganizationId" type="subscriptionevent:IDType" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				nillable="true" minOccurs="0" />
+			<element name="SourceSystem" type="subscriptionevent:SourceSystem" />
+			<element name="UpdateLicenses" type = "xsd:boolean" />
+			<element name="eventReason" type="xsd:string" />
+		</sequence>
+	</complexType>
+	<complexType name="SubscribeMultiUserB2CRequestType">
+		<sequence>
+			<element name="SubscriptionType" type="subscriptionevent:SubscriptionType" />
+			<element name="ModelType" type="subscriptionevent:ModelType" />
+			<element name="ProductEntityId" type="subscriptionevent:IDType" />
+			<element name="PaymentRecordId" type="subscriptionevent:IDType" />
+			<element name="Resources" type="subscriptionevent:SubscribedResources"
+				maxOccurs="1" />
+			<element name="UserId" type="subscriptionevent:IDType" minOccurs="1" maxOccurs="unbounded"/>
+			<element name="OrganizationId" type="subscriptionevent:IDType"
+				minOccurs="0" />
+			<element name="LearningContextRole" type="subscriptionevent:LCRoleType"
+				minOccurs="0" />
+			<element name="CreatedBy" type="subscriptionevent:IDType"
+				nillable="true" minOccurs="0" />
+			<element name="UpdateLicenses" type = "xsd:boolean" />
+			<element name="eventReason" type="xsd:string" />
+		</sequence>
+	</complexType>
+</schema>

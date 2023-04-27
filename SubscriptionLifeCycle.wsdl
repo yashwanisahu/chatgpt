@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://subscriptionevent.rws.pearson.com/doc/2009/06/01/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:subscriptionevent="http://subscriptionevent.rws.pearson.com/doc/2009/06/01/" name="Subscription" targetNamespace="http://subscriptionevent.rws.pearson.com/doc/2009/06/01/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://subscriptionevent.rws.pearson.com/doc/2009/06/01/">
+			<xsd:include schemaLocation="Subscription.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="SubscriptionException">
+		<wsdl:part name="SubscriptonException" element="tns:SubscriptionExceptionElement"/>
+	</wsdl:message>
+	<wsdl:message name="SubscribeUserRequest">
+		<wsdl:part name="SubscriptionRequest" element="tns:SubscribeUserRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="SubscribeUserResponse">
+		<wsdl:part name="SubscriptionResponse" element="tns:SubscribeUserResponseElement"/>
+	</wsdl:message>
+	<wsdl:message name="SubscribeUserB2CRequest">
+		<wsdl:part name="SubscriptionRequestB2C" element="tns:SubscribeUserB2CRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="SubscribeUserB2CResponse">
+		<wsdl:part name="SubscriptionResponseB2C" element="tns:SubscribeUserB2CResponseElement"/>
+	</wsdl:message>
+	<wsdl:message name="UnSubscribeUserRequest">
+		<wsdl:part name="UnSubscriptionRequest" element="tns:UnSubscribeUserRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="UnSubscribeUserResponse">
+		<wsdl:part name="UnSubscriptionResponse" element="tns:UnSubscribeUserResponseElement"/>
+	</wsdl:message>
+	<wsdl:message name="GetSubscriptionByUserIdRequest">
+		<wsdl:part name="GetSubscriptionByUserIdRequest" element="tns:GetSubscriptionByUserIdRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="GetSubscriptionByUserIdResponse">
+		<wsdl:part name="GetSubscriptionByUserIdResponse" element="tns:GetSubscriptionByUserIdResponseElement"/>
+	</wsdl:message>
+	<wsdl:message name="UnSubscribeUserByLicensePoolIdRequest">
+		<wsdl:part name="UnSubscribeUserByLicensePoolIdRequest" element="tns:UnSubscribeUserByLicensePoolIdRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="UnSubscribeUserByLicensePoolIdResponse">
+		<wsdl:part name="UnSubscribeUserByLicensePoolIdResponse" element="tns:UnSubscribeUserByLicensePoolIdResponseElement"/>
+	</wsdl:message>
+	<wsdl:message name="UnSubscribeUserByAffiliationRequest">
+		<wsdl:part name="UnSubscribeUserByAffiliationRequest" element="tns:UnSubscribeUserByAffiliationRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="UnSubscribeUserByAffiliationResponse">
+		<wsdl:part name="UnSubscribeUserByAffiliationResponse" element="tns:UnSubscribeUserByAffiliationResponseElement"/>
+	</wsdl:message>
+    <wsdl:message name="UnSubscribeUserByRequestIdRequest">
+		<wsdl:part name="UnSubscribeUserByRequestIdRequest" element="tns:UnSubscribeUserByRequestIdRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="UnSubscribeUserByRequestIdResponse">
+		<wsdl:part name="UnSubscribeUserByRequestIdResponse" element="tns:UnSubscribeUserByRequestIdResponseElement"/>
+	</wsdl:message>
+	<wsdl:message name="PublishSubscriptionNotificationRequest">
+			<wsdl:part name="PublishSubscriptionNotificationRequest" element="tns:PublishSubscriptionNotificationRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="PublishSubscriptionNotificationResponse">
+			<wsdl:part name="PublishSubscriptionNotificationResponse" element="tns:PublishSubscriptionNotificationResponseElement"/>
+	</wsdl:message>	
+	
+	
+	<wsdl:message name="GetSubscriptionsBySubscriptionRequestIdRequest">
+		<wsdl:part name="GetSubscriptionsBySubscriptionRequestIdRequest" element="tns:GetSubscriptionsBySubscriptionRequestIdRequest"/>
+	</wsdl:message>	
+	<wsdl:message name="GetSubscriptionsBySubscriptionRequestIdResponse">
+		<wsdl:part name="GetSubscriptionsBySubscriptionRequestIdResponse" element="tns:GetSubscriptionsBySubscriptionRequestIdResponse"/>
+	</wsdl:message>	
+	
+	<wsdl:message name="CreateResourceSubscriptionsByProductIdRequest">
+		<wsdl:part name="CreateResourceSubscriptionsByProductIdRequest" element="tns:CreateResourceSubscriptionsByProductIdRequestElement"/>
+	</wsdl:message>	
+	<wsdl:message name="CreateResourceSubscriptionsByProductIdResponse">
+		<wsdl:part name="CreateResourceSubscriptionsByProductIdResponse" element="tns:CreateResourceSubscriptionsByProductIdResponseElement"/>
+	</wsdl:message>
+	
+	<wsdl:message name="GetSubscribedProductsRequest">
+		<wsdl:part name="GetSubscribedProductsRequest" element="tns:GetSubscribedProductsRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="GetSubscribedProductsResponse">
+		<wsdl:part name="GetSubscribedProductsResponse" element="tns:GetSubscribedProductsResponseElement"/>
+	</wsdl:message>
+    
+    <wsdl:message name="GetSubscribedProductsAndResourcesRequest">
+		<wsdl:part name="GetSubscribedProductsAndResourcesRequest" element="tns:GetSubscribedProductsAndResourcesRequestElement"/>
+	</wsdl:message>
+	<wsdl:message name="GetSubscribedProductsAndResourcesResponse">
+		<wsdl:part name="GetSubscribedProductsAndResourcesResponse" element="tns:GetSubscribedProductsAndResourcesResponseElement"/>
+	</wsdl:message>
+    
+	<wsdl:message name="GetSubscriptionHistoryBySubscriptionRequestIdRequest">
+		<wsdl:part name="GetSubscriptionHistoryBySubscriptionRequestIdRequest" element="tns:GetSubscriptionHistoryBySubscriptionRequestIdRequest"/>
+	</wsdl:message>	
+	<wsdl:message name="GetSubscriptionHistoryBySubscriptionRequestIdResponse">
+		<wsdl:part name="GetSubscriptionHistoryBySubscriptionRequestIdResponse" element="tns:GetSubscriptionHistoryBySubscriptionRequestIdResponse"/>
+	</wsdl:message>	
+	
+	<wsdl:message name="GetSubscriptionsRequestBySubscriptionRequestIdsRequest">
+		<wsdl:part name="GetSubscriptionsRequestBySubscriptionRequestIdsRequest" element="tns:GetSubscriptionsRequestBySubscriptionRequestIdsRequest"/>
+	</wsdl:message>
+	
+	<wsdl:message name="GetSubscriptionsRequestBySubscriptionRequestIdsResponse">
+		<wsdl:part name="GetSubscriptionsRequestBySubscriptionRequestIdsResponse" element="tns:GetSubscriptionsRequestBySubscriptionRequestIdsResponse"/>
+	</wsdl:message>
+	
+	<wsdl:portType name="SubscriptionLifeCyclePort">
+		<wsdl:operation name="SubscribeUser">
+			<wsdl:input message="tns:SubscribeUserRequest"/>
+			<wsdl:output message="tns:SubscribeUserResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		<wsdl:operation name="SubscribeUserB2C">
+			<wsdl:input message="tns:SubscribeUserB2CRequest"/>
+			<wsdl:output message="tns:SubscribeUserB2CResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		<wsdl:operation name="UnSubscribeUser">
+			<wsdl:input message="tns:UnSubscribeUserRequest"/>
+			<wsdl:output message="tns:UnSubscribeUserResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSubscriptionByUserId">
+			<wsdl:input message="tns:GetSubscriptionByUserIdRequest"/>
+			<wsdl:output message="tns:GetSubscriptionByUserIdResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		<wsdl:operation name="UnSubscribeUsersByLicensePoolId">
+			<wsdl:input message="tns:UnSubscribeUserByLicensePoolIdRequest"/>
+			<wsdl:output message="tns:UnSubscribeUserByLicensePoolIdResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		<wsdl:operation name="UnSubscribeUserByAffiliation">
+			<wsdl:input message="tns:UnSubscribeUserByAffiliationRequest"/>
+			<wsdl:output message="tns:UnSubscribeUserByAffiliationResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>	
+		<wsdl:operation name="UnSubscribeUserByRequestId">
+			<wsdl:input message="tns:UnSubscribeUserByRequestIdRequest"/>
+			<wsdl:output message="tns:UnSubscribeUserByRequestIdResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+        
+		<wsdl:operation name="GetSubscriptionsBySubscriptionRequestId">
+			<wsdl:input message="tns:GetSubscriptionsBySubscriptionRequestIdRequest"/>
+			<wsdl:output message="tns:GetSubscriptionsBySubscriptionRequestIdResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="CreateResourceSubscriptionsByProductIdRequest">
+			<wsdl:input message="tns:CreateResourceSubscriptionsByProductIdRequest"/>
+			<wsdl:output message="tns:CreateResourceSubscriptionsByProductIdResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="PublishSubscriptionNotification">
+			<wsdl:input message="tns:PublishSubscriptionNotificationRequest"/>
+			<wsdl:output message="tns:PublishSubscriptionNotificationResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="GetSubscribedProductsByUserId">
+			<wsdl:input message="tns:GetSubscribedProductsRequest"/>
+			<wsdl:output message="tns:GetSubscribedProductsResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>	
+		
+        <wsdl:operation name="GetSubscribedProductsAndResourcesByUserId">
+			<wsdl:input message="tns:GetSubscribedProductsAndResourcesRequest"/>
+			<wsdl:output message="tns:GetSubscribedProductsAndResourcesResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+        
+		<wsdl:operation name="GetSubscriptionHistoryBySubscriptionRequestId">
+			<wsdl:input message="tns:GetSubscriptionHistoryBySubscriptionRequestIdRequest"/>
+			<wsdl:output message="tns:GetSubscriptionHistoryBySubscriptionRequestIdResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="GetSubscriptionsRequestBySubscriptionRequestIds">
+			<wsdl:input message="tns:GetSubscriptionsRequestBySubscriptionRequestIdsRequest"/>
+			<wsdl:output message="tns:GetSubscriptionsRequestBySubscriptionRequestIdsResponse"/>
+			<wsdl:fault name="SubscriptionException" message="tns:SubscriptionException"/>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	
+	<wsdl:binding name="SubscriptionLifeCycleBinding" type="tns:SubscriptionLifeCyclePort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="SubscribeUser">
+			<soap:operation soapAction="Subscription" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="SubscribeUserB2C">
+			<soap:operation soapAction="SubscriptionB2C" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="UnSubscribeUser">
+			<soap:operation soapAction="UnSubscription" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetSubscriptionByUserId">
+			<soap:operation soapAction="GetSubscriptionByUserId" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="UnSubscribeUsersByLicensePoolId">
+			<soap:operation soapAction="UnSubscribeUsersByLicensePoolId" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="UnSubscribeUserByAffiliation">
+			<soap:operation soapAction="UnSubscribeUserByAffiliation" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>		
+		<wsdl:operation name="UnSubscribeUserByRequestId">
+			<soap:operation soapAction="UnSubscribeUserByRequestId" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+        
+		<wsdl:operation name="GetSubscriptionsBySubscriptionRequestId">
+			<soap:operation soapAction="GetSubscriptionsBySubscriptionRequestId" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="CreateResourceSubscriptionsByProductIdRequest">
+			<soap:operation soapAction="CreateResourceSubscriptionsByProductIdRequest" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>			
+		
+		
+		<wsdl:operation name="PublishSubscriptionNotification">
+			<soap:operation soapAction="PublishSubscriptionNotification" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="GetSubscribedProductsByUserId">
+			<soap:operation soapAction="GetSubscribedProductsByUserId" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+        <wsdl:operation name="GetSubscribedProductsAndResourcesByUserId">
+			<soap:operation soapAction="GetSubscribedProductsAndResourcesByUserId" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+        
+		<wsdl:operation name="GetSubscriptionHistoryBySubscriptionRequestId">
+			<soap:operation soapAction="GetSubscriptionHistoryBySubscriptionRequestId" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="GetSubscriptionsRequestBySubscriptionRequestIds">
+			<soap:operation soapAction="GetSubscriptionsRequestBySubscriptionRequestIds" soapActionRequired="true" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="SubscriptionException">
+				<soap:fault name="SubscriptionException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+	</wsdl:binding>
+	<wsdl:service name="SubscriptionLifeCycleWebService">
+		<wsdl:port name="SubscriptionLifeCyclePort" binding="tns:SubscriptionLifeCycleBinding">
+			<soap:address location="http://www.pearson.com/SubscriptionLifeCycle/services"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
